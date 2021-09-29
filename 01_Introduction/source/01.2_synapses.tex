@@ -4,187 +4,155 @@
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\lfoot{\texttt{comsm0094.github.io}}
-\lhead{LC\&B - 01.1 Neurons and action potential - Conor}
-\rhead{\thepage}
-\cfoot{}
+\lfoot{\texttt{comsm0094.github.io}} \lhead{LC\&B - 01.1 Neurons and
+  action potential - Conor} \rhead{\thepage} \cfoot{}
 \begin{document}
 
-\section*{Neurons and action potentials}
+\section*{Synapses}
 
-\subsection*{What is this unit about?} 
-This unit is about how the brain works. We don't know how the brain
-works, but this unit is about what we do know. Typically when you ask
-how the brain works, you expect one of two sorts of answers, one sort
-of answer describes the stuff the brain is made of, neurons, synapses,
-dendrites and axons, and explains what they do and how it might
-support computation in the brain. The other sort of answer talks about
-parts of the brain, the hippocampus, the basal ganglia, the
-cerebellum, and suggests which algorithm might be at work in each.
+In the previous section we discussed action potentials, the voltage
+pulses that travel along axons and carry signals from neuron to
+neuron. What we didn't discuss was how the signals got from the axon
+of one neuron to the dendrite of the next. The answer is synapses. 
 
-Of course, neither of these answers rely addresses the central mystery
-we all want answering: what am I doing when I am thinking, how can a
-computational device produce the sense that I am `I'; what is going
-on? Nor does any answer you will get now answer the more modest, but
-still incredibly ambitious scientific programme that neuroscientists have
-decided is a reasonable substitute for answering these fundamental
-questions: what computations occur in the brain and how are these made
-possible by the action of the brain's constituents across different
-scales: the chemicals that build synapses, the synapses the connect
-neurons, the neuronal circuits these connections produce, the brain
-areas that contain the circuits.
+In discussing the action potential we mentioned that it is a largely
+stereotypical signal, the action potentials from a neuron all have
+roughly the same amplitude and shape. The synapses, in contrast, are
+very variable; they have different strengths, the strengths can change
+over time. Beyond these variations in strength, synapses can have very
+different dynamics, with differences in the time course of how the
+synapse responds to a spike, or in how the synapse responds to spikes
+coming in quick succession.
 
-This unit, therefore, describes a small part of a science in progress,
-a science with incredible ambitions and amazing potential which is
-still in its infancy. We believe that those things we do understand
-from neuroscience have something useful to tell us as computer
-scientists, roboticists and technologists.
+The complicated and variable behaviours of synapses are possible
+because synapses do not simply connect the axon to the dendrite, they
+are not simply holes or pores through which ions flow. In fact, there
+are synapses, called \textsl{gap junctions} that are like that, these
+gap junctions are the only synapses in some simple creatures like
+jellyfish and are found in the mammalian brain. However, the synapses
+we usually have in mind are \textsl{chemical synapses} in which the
+signal transfer from \textsl{pre-synaptic} axon to
+\textsl{post-synaptic} dendrite involves a complex chemical cascade.
 
-\subsection*{What is the brain made of?}
 
-One answer to this question is that the brain is made of cells; there
-are other answers, the brain is made of atoms, the brain is made of
-circuits and so on, but in this introduction we will first concentrate
-on the cells.
-
-Many of the cells in the brain serve a sort of support role, they hold
-things in place, help with metabolic processes and maintain the brain
-as a living organ. These cells, many of which are \textsl{glial cells}
-may well play a role in neuronal computation; but here we will focus
-on the \textsl{neurons}, the cells which are directly involved in the
-cell-to-cell signaling we believe is responsible for computation in
-the brain.
-
-We will be looking in detail at how neurons signal; our aim here,
-however, is to get an overview of how the story fits together to make
-it easier to understand the more detailed discussion when we get to
-it. In Fig.~\ref{fig_neuron} there is a diagram giving the main parts
-of a neuron. In the center there is the \textsl{soma}, the neuron is a
-cell and the soma is the cell body; here many of the metabolic
-processes, the life-supporting, functions of the neuron occur, it
-contains, for example, the nucleus where the genetic material is found
-and which controls the synthesis of proteins. 
+\subsection*{Chemical synapses} 
 
 \begin{figure}[tbhp]
   \begin{center}
     \includegraphics[width=8cm]{neuron.png}
     \end{center}
-  \caption{\textbf{A diagram of a neuron}; this cartoon shows the main parts of the neuron, very very roughly, the dendrites, where the signals come in, the soma where they get added together and the axon, which carries signals on to other neurons. Figure from \texttt{wikimedia}\label{fig_neuron}}
+  \caption{\textbf{A diagram of a synapse}; this cartoon shows the
+    main parts of the synapse; the axon of the pre-synaptic neuron is
+    coming in from the top, the dendrite of the post-synaptic neuron
+    is leaving through the bottom. Figure from
+    \texttt{wikipedia}\label{fig_synapse}}
 \end{figure}
 
-There are two sorts of tubes extending from the soma, the
-\textsl{dendrites} and the \textsl{axon}. These really are tubes,
-though it is tempting to think of them as wires: the neuron has an
-inside and an outside separated by a membrane. Both inside and outside
-the neuron there is fluid, basically water with dissolved salts, but
-the fluid inside and out have different concentrations of the ions
-that make up the salts. There can be a potential difference, that is a
-voltage difference, across the membrane and, as we will discuss, the
-signals we are will be talking about are changes in voltage.
+In Fig.~\ref{fig_synapse} is a cartoon of a synapse. The first thing
+to note is that the dendrite and axon don't actually touch; there is a
+little gap, called the \textsl{synaptic cleft} between the two. Of
+course, the axon and dendrite are held together by glial cells, cells
+which also surround the cleft and keep everything in place. In
+important thing though, is that the charge doesn't flow directly from dendrite to axon.
 
-Roughly speaking, and this is a very rough claim, the signals to the
-neuron come in along the dendrite whereas the signals the neuron sends
-go out along the axon. The axon of other neurons will transmit signals
-to this neuron's dendrites at points where they, the other neuron's
-axon and this neuron's dendrite, nearly touch: the nearly-touching
-place is called a synapses and synapses contains complicated
-bio-mechanical machinery to allow the signals to be communicated from
-axon to dendrite. We will discuss this further soon.
+When a spike arrives at the dendrite it kicks off a chain of
+events. The sudden change in voltage opens channels in the membrane of
+the synapse which allow calcium to flow into the dendrite; it is an
+amazing property of neurons that they contain ion-specific
+channels. The calcium flows into the synapses and, by way of
+complicated chemical reactions, this causes some little spheres called
+\textsl{vesicles} to fuse with the wall of the cleft and burst
+releasing some very specialized molecules called
+\textsl{neurotransmitters} into the cleft. These neurotransmitters, in
+turn, bind with channels on the opposite face of the cleft, that is,
+with channels in the membrane of the post-synaptic dendrite.
 
-\begin{figure}[tbhp]
-  \begin{center}
-  \includegraphics[width=6cm]{Smi32neuron.jpg}
-\end{center}
-  \caption{\textbf{A picture of some neurons}; these show the
-    pyramidal neurons found in the cortex, part of the brain; they are
-    called pyramidal because of the shape of the soma; you can also see the large number of dendrites. Figure from
-    \texttt{wikipedia}\label{fig_real_neuron}}
-\end{figure}
+These channels, in turn, in response to binding with the
+neurotransmitter, open and depending on the type of synapse, they
+either allow ions to flow into, or out of, the dendrite, either
+increasing its voltage, or decreasing it. In other words, before
+looking at all the other variations, there are two main types of
+chemical synapses, \textsl{excitatory} synapses, that increase the
+voltage of the post-synaptic neurons and \textsl{inhibitory} synapses
+that decrease it.
 
-In Fig.~\ref{fig_real_neuron} is a picture of some neurons; it would
-be a mistake to think that all neurons are similar to each
-other. There is a huge diversity of different neurons, they differ in
-their shape, in their size, in how connected they are and in their
-voltage dynamics. As an extreme example, the Purkinje cells, as in
-Fig.~\ref{fig_PC} has a huge number of dendrites and receives
-connections from as many as 100\_000 other neurons, however, many of
-those other neurons are cerebellum granule cells, very small neurons
-that receive inputs from only three or four other neurons. 
+Each type of synapse has different channels in the dendritic face of
+the cleft and different neurotransmitter which binds to these
+channels. In an excitatory synapses these channels allow sodium ions
+into the cell; since sodium ions are positive ions this increases the
+charge inside the cell. Depending on exactly what type of inhibitory
+synapse it is, in an inhibitory synapse the channels either allow
+chlorine ions into the dendrite, chlorine ions are negative so this
+decreases the voltage, or they allow potassium ions out of the cell,
+potassium ions are positive, so again this decreases the voltage.
 
-\begin{figure}[tbhp]
-  \begin{center}
-  \includegraphics[width=5cm]{PC.png}
-\end{center}
-  \caption{\textbf{Drawing of a Purkinje cell}; this is a drawing of a
-    Purkinje cell, by Santiago Ram\'{o}n y Cajal, an important
-    neuroanatomist active in the late nineteenth and early twentieth
-    century. The Purkinje cells are found in the cerebellum. Figure from
-    \texttt{wikipedia}\label{fig_PC}}
-\end{figure}
+The channels open because they have bonded with the neurotransmitter;
+they are called \textsl{ligand-gated channels}; a ligand is a molecule
+that binds to things and so these are channels that act as gates,
+sometimes allowing ions through and sometimes not and they do so
+depending on whether or not they are bound to a ligand. This is in
+contrast with the \textsl{voltage-gated channels} that open to let the
+calcium in, these open and close depending on voltage and, we will
+see, voltage gated channels are also important in understanding how
+spiking happens. The binding between ligand and ligand-gated channel
+is quite loose and the molecules are bathed in a warm fluid; random
+Brownian movements will unbind the ligand allowing the channel to
+close. The timescale for this unbinding is different for different
+channels; for typical excitatory synapses it is of the order of tens
+of milliseconds. The neurotransmitter in the cleft is also cleared
+away by little pumps; the reuptake pumps, and is repackaged into
+vesicles ready for the arrival of later spikes.
 
-It is tempting, as a computer scientist, to think of neurons as a sort
-of universal circuit component; this is a mistake. However, there are,
-nonetheless, aspect to the description of neurons that are reasonably
-general.The first of these reasonably general aspects we have already
-covered: signals come in the dendrites, accumulate in the soma and go
-out the axon. There is a more general aspect we have already alluded
-to: the signals correspond to changes in voltage.
-
-\subsection{Action potentials}
-
-There is a potential difference between the inside and outside of a
-neuron. For convenience we usually regard the fluid in the brain as
-being at a zero voltage; relative to that the fluid inside a neuron
-has a negative voltage; -70 mV at rest would be a typical value. You
-might think this makes no sense, if there is a voltage difference
-between the inside and outside of the neuron, surely a current would
-flow between the two equalizing the voltage difference? There are a
-number of reasons that doesn't happen, firstly the membrane is an
-insulator, largely preventing the flow of current, secondly, the
-situation is, as we will see, more subtle, not only is there a
-difference in voltage across the membrane, there is a difference in
-the concentration of ions with, for example, an excess of sodium ions
-outside the cell relative to inside and an excess of potassium ions
-inside relative to out. Along with the voltage differences, these
-concentration differences also have the potential to cause ions to
-flow into or out of the neuron. Finally, there are pumps, minuscule
-molecular machines, which pump ions in and out of the neuron to help
-maintain the voltage difference. It is, all-in-all, a complicated
-story, for now, what we need to know is that there is a voltage
-difference across the cell membrane.
-
-Why is this important, well it is important because the signaling
-dynamics of a neuron is voltage dynamics: signals are carried by what
-are called \textsl{action potentials} or \textsl{spikes}: these are
-spikes in the voltage that travel along the axon. A picture of an
-action potential is shown in Fig.~\ref{fig_hh}. During a spike the voltage
-shoots up by about 80 mV and then falls back to near the resting
-value, all during 1-2 ms. The dynamics that allow this to happen come
-from ions traveling through the membrane, in a sense the energy for
-the spike has been stored up by the all ion pumping that has created
-the concentration differences across the membrane. The spike will
-travel along the axon. The axon will usually have many branches and
-when this happens a spike will travel down each branch: the spike
-doesn't split in the sense that the spike traveling down each branch
-will be the same size as the original spike. Similarly, broadly
-speaking, the spike does not change amplitude or shape as it
-propagates along the axon.
+The final part of this story is the dendrite itself; consider first
+the situation with a excitatory neuron. The current flow into the
+neuron increases the voltage, this ramps up as more and more
+ligand-gated channels open before decaying away again as they
+close. The resulting positive pulse is called an \textsl{excitatory
+  post-synaptic potential} or EPSP. For an inhibitory synapse the
+pulse is negative and is called an \textsl{inhibitory post-synaptic
+  potential} or IPSP. Example PSPs are showing Fig.~\ref{fig_psp}.
 
 
 \begin{figure}[tbhp]
   \begin{center}
-  \includegraphics[width=6cm]{action_potential.jpg}
-\end{center}
-  \caption{\textbf{An action potential}; this is an action potential recorded from an axon, it is actually a very early recording performed by Hodgkin and Huxley, pioneers in recording and modeling action potentials; this picture is actually a photograph of an oscilloscope trace. \label{fig_hh}}
+    \includegraphics[width=8cm]{psp.jpg}
+    \end{center}
+  \caption{\textbf{Some PSPs}; the grey lines are recordings for
+    individual PSPs with the red lines giving averages and blue lines
+    demonstrate a model; we will look at simple models of PSPs
+    later. Figure from \cite{ZhouEtAl2013}\label{fig_psp}}
 \end{figure}
+
+In general dendrites lack the voltage-gated channels needed for action
+potentials and the PSPs in dendrites propagate passively towards the
+axon. In general dendrites are shorter than axons and thicker, so this
+conductance allows the change in voltage at the dendrite to propagate
+in to the soma. Even in the soma, where there are voltage gates
+channels an individual EPSP won't change the voltage enough to cause a
+spike. However, if lots of PSPs arrive at around the same time, the
+voltage in the soma will increase until it reaches a tipping point,
+around -55 mV is typical value of where this tipping point is. At the tipping point
+the opening of voltage-gated channels will cause a spike, usually at
+the point the axon joins the soma, and this spike will head off down
+the axon.
 
 \section{Summary}
 
-So far we have begun a broad overview of neurons and what they do;
-this is all going to be revisited in more detail later. In particular
-we have described the division of neurons into dendrites, soma and
-axons and have seen that signals propagate along the axon in the form
-of voltage spikes.
+Here we described synapses: this is a complicated story we will go
+through again. When the spike arrives at the synapse some of the
+vesicles, little bags of neurotransmitter, fuse to the membrane of the
+synapse closest to the dendrite and burst, emptying neurotransmitter
+into the synaptic cleft. This, in turn, causes channels to open in the
+dendrite, changing the potential there. This change in potential, a
+PSP, flows into the soma causing a small change in the potential in
+the soma. If these small changes add up to push the soma potential to
+a threshold, the neuron spikes, sending out an action potential along
+the axon.
+
+
+\bibliographystyle{plain}
+\bibliography{../../misc/references}{}
+
 
 \end{document}
 
