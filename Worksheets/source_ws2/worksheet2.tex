@@ -110,13 +110,13 @@ updated `at the same time', in other words, you should do something like:
 \end{eqnarray*}
 and then
 \begin{eqnarray*}
-  \mathtt{v}&=&\mathtt{v\_derivative(v\_old,w\_old)*dt}\\
-  \mathtt{w}&=&\mathtt{w\_derivative(v\_old,w\_old)*dt}
+  \mathtt{v}&+=&\mathtt{v\_derivative(v\_old,w\_old)*dt}\\
+  \mathtt{w}&+=&\mathtt{w\_derivative(v\_old,w\_old)*dt}
 \end{eqnarray*}
 so that both variables get updated using the values from the previous time step. If you just did
 \begin{eqnarray*}
-  \mathtt{v}&=&\mathtt{v\_derivative(v,w)*dt}\\
-  \mathtt{w}&=&\mathtt{w\_derivative(v,w)*dt}
+  \mathtt{v}&+=&\mathtt{v\_derivative(v,w)*dt}\\
+  \mathtt{w}&+=&\mathtt{w\_derivative(v,w)*dt}
 \end{eqnarray*}
 then \texttt{v} would be updated using the old values, whereas \texttt{w} would be updated using the new value of \texttt{v}!
 
