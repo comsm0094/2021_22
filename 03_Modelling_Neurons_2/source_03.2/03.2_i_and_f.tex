@@ -1,14 +1,14 @@
-\documentclass[11pt,a4paper]{scrartcl}
-\typearea{12}
+\documentclass{article}
+\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\usepackage{pstricks}
-\usepackage{listings}
-\lstset{language=python}
-\pagestyle{headings}
-\markright{Computation Neuroscience - 3 integrate and fire}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\texttt{comsm0094.github.io}}
+\lhead{LC\&B - 03.2 I\&F - Conor}
+\rhead{\thepage}
+\cfoot{}
 \begin{document}
-
-\subsection*{Introduction}
+\subsection*{The leaky integrate and fire model}
 This note is about the dynamics of a single neuron, it will cover
 one of the simplest such models: the leaky integrate and fire model.
 
@@ -188,7 +188,7 @@ current. It is plotted in Fig.~\ref{f_i_curve}.
 \begin{thebibliography}{99}
 \bibitem{Lapicque1907a}
 Lapicque, L. (1907). 
-\newblock Recherches quantitatives sur l'excitation électrique des nerfs traitée comme une polarisation. 
+\newblock Recherches quantitatives sur l'excitation \'{e}lectrique des nerfs trait\'{e}e comme une polarisation. 
 \newblock J. Physiol. Pathol. Gen, 9:620--635.
 \end{thebibliography}
 
