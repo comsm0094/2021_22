@@ -1,0 +1,52 @@
+
+
+\documentclass[12pt]{article}
+\usepackage{amsfonts, epsfig}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lfoot{\texttt{comsm0094.github.com}}
+\lhead{Worksheet 3: Synapses}
+\rhead{\thepage}
+\cfoot{}
+
+\newcommand{\ms}{\mbox{\,ms}}
+\newcommand{\mV}{\mbox{\,mV}}
+\newcommand{\kHz}{\mbox{\,kHz}}
+
+\begin{document}
+
+\section*{Synapses}
+
+Simulate two neurons which have synaptic connections between each
+other, that is the first neuron projects to the second, and the second
+neuron projects to the first. Both model neurons should have the same
+parameters: $\tau_m = 20$ ms, $E_L = -70$ mV, $V_r = -80$ mV, $V_t =
+-54$ mV, $R_mI_e = 18$ mV and their synapses should also have the same
+parameters: $R_m \bar{g}_s = 0.075$, $\tau_s= 10$ ms. For simplicity
+take the synaptic conductance to satisfy
+\begin{equation}
+\tau_s\frac{s}{dt}=-s
+\end{equation}
+with a spike arriving causing $s$ to increase by one, take the synapse
+strength to be $g_s=\bar{g}_s s$. Simulate two cases: a) assuming that
+the synapses are excitatory with $E_s = 0$ mV, and b) assuming that
+the synapses are inhibitory with $E_s = -80$ mV. For each simulation
+set the initial membrane potentials of the neurons $V$ to different
+values chosen randomly from between $V_r$ and $V_t$ and simulate 1 s
+of activity. For each case plot the voltages of the two neurons on the
+same graph with different colours.
+
+You'll notice that there is no seperate figure given for $R_m$, just
+$R_m \bar{g}_s$ and $R_m I_e$, but, since the voltages for each neuron
+satisfies an equation of the form
+\begin{equation}
+  \tau_m \frac{dV}{dt}= E_L-V+R_m\bar{g}_s s(E_s-V)+R_mI_e
+\end{equation}
+this is all that is needed.
+
+
+\end{document}
+
