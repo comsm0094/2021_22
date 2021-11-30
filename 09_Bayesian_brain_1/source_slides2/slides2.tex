@@ -158,27 +158,6 @@ $$\cbla{}
   $$\cbla{}
 \end{frame}
 
-\begin{frame}{MAP estimate}
-  Ultimately the participant is asked to estimate the height; we
-  assume that they use \crish$p(x|v,h)$\cbla{} and respond with the
-  value of \crish$x$\cbla{} which has the maximum value of
-  \crish$p(x|v,h)$\cbla{}:
-  \crish$$
-  \hat{x}=\arg\max_x{p(x|v,h)}
-  $$\cbla{}
-  This is the \textbf{maximum a posteriori} estimate or \textbf{MAP} estimate.
-\end{frame}
-
-\begin{frame}{MAP estimate}
-  \crish$$
-p(x|v,h)=\frac{p(v,h|x)p(x)}{p(v,h)}=\frac{p(v|x)p(h|x)p(x)}{p(v,h)}
-$$\cbla{}
-It is assumed that the prior is uniform, so \crish$p(x)$\cbla{} is constant over some range of possible \crish$x$\cbla{}, so if \crish$x$\cbla{} is in that range
-\crish$$
-p(x|v,h)\propto \frac{p(v|x)p(h|x)}{p(v,h)}
-$$\cbla{}
-\end{frame}
-
 \begin{frame}{Bayesian fusion}
   Let's assume the noise modelled by \cblu$V$\cbla{} and \cred$H$\cbla{} are Gau\ss{}ian so
 \cblu
